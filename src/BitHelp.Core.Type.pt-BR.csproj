@@ -1,0 +1,48 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>BitHelp.Core.Type.pt_br</RootNamespace>
+    <Version>0.1.0</Version>
+    <Authors>Renato Pacheco</Authors>
+    <PackageProjectUrl></PackageProjectUrl>
+    <NeutralLanguage>en</NeutralLanguage>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <PackageOutputPath>../nuget</PackageOutputPath>
+    <Description>Project with a collection of data types usually used in Brazil.</Description>
+    <RepositoryType>Git</RepositoryType>
+    <RepositoryUrl>https://github.com/RenatoPacheco/BitHelp.Core.Type.pt-BR</RepositoryUrl>
+    <PackageReleaseNotes>
+      Release:
+
+      - Adding type CEP.
+      - Adding type CNPJ.
+      - Adding type CPF.
+      - Adding type Date.
+      - Adding type Phone.
+      - Adding type Pis.
+      - Adding type UF.
+    </PackageReleaseNotes>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Resource.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resource.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Resource.pt-BR.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Resource.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>
