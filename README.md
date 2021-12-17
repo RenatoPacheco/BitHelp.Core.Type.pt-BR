@@ -39,7 +39,7 @@ dotnet add package BitHelp.Core.Type.pt-BR
 - Adding type CPF.
 - Adding type Date.
 - Adding type Phone.
-- Adding type Pis.
+- Adding type PIS.
 - Adding type UF.
 
 To read about others releases access [RELEASES.md](./RELEASES.md)

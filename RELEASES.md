@@ -9,5 +9,5 @@
 - Adding type CPF.
 - Adding type Date.
 - Adding type Phone.
-- Adding type Pis.
+- Adding type PIS.
 - Adding type UF.
