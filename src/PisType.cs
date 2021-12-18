@@ -46,7 +46,7 @@ namespace BitHelp.Core.Type.pt_br
             input = input?.Trim();
             if (!string.IsNullOrEmpty(input))
             {
-                string pattern = @"^\d{3}\.\d{5}\.\d{2}\-\d{1}$|^\d{11}$";
+                string pattern = @"^\d{3}[\. ]?\d{5}[\. ]?\d{2}[\- ]?\d{1}$";
                 if (Regex.IsMatch(input, pattern) && Validate(input))
                 {
                     input = Regex.Replace(input, @"[^\d]", string.Empty);
