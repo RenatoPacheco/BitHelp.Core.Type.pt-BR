@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
-    <RootNamespace>BitHelp.Core.Type.pt_br.Test</RootNamespace>
+    <RootNamespace>BitHelp.Core.Type.pt_BR.Test</RootNamespace>
 
     <IsPackable>false</IsPackable>
   </PropertyGroup>

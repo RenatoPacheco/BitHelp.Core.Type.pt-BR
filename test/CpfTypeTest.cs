@@ -1,6 +1,6 @@
 ﻿using Xunit;
 
-namespace BitHelp.Core.Type.pt_br.Test
+namespace BitHelp.Core.Type.pt_BR.Test
 {
     public class CpfTypeTest
     {

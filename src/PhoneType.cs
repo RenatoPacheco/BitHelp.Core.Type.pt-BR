@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
-using BitHelp.Core.Type.pt_br.Resources;
+using BitHelp.Core.Type.pt_BR.Resources;
 
-namespace BitHelp.Core.Type.pt_br
+namespace BitHelp.Core.Type.pt_BR
 {
     public struct PhoneType 
         : IFormattable, IComparable,
