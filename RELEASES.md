@@ -1,5 +1,11 @@
 # BitHelp.Core.Type.pt-BR
 
+## Release 0.1.3
+
+**Features:**
+
+- Removing tag deterministic.
+
 ## Release 0.1.2
 
 **Features:**

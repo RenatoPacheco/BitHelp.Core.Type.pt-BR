@@ -30,11 +30,11 @@ dotnet add package BitHelp.Core.Type.pt-BR
 
 ## Latest releases
 
-## Release 0.1.2
+## Release 0.1.3
 
 **Features:**
 
-- Enable ContinuousIntegrationBuild only in github.
+- Removing tag deterministic.
 
 To read about others releases access [RELEASES.md](./RELEASES.md)
 
