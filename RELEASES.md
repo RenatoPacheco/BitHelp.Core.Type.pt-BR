@@ -1,5 +1,11 @@
 # BitHelp.Core.Type.pt-BR
 
+## Release 0.1.2
+
+**Features:**
+
+- Enable ContinuousIntegrationBuild only in github.
+
 ## Release 0.1.1
 
 **Features:**

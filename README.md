@@ -30,12 +30,11 @@ dotnet add package BitHelp.Core.Type.pt-BR
 
 ## Latest releases
 
-## Release 0.1.1
+## Release 0.1.2
 
 **Features:**
 
-- Fixing namespace.
-- Adding more build settings.
+- Enable ContinuousIntegrationBuild only in github.
 
 To read about others releases access [RELEASES.md](./RELEASES.md)
 

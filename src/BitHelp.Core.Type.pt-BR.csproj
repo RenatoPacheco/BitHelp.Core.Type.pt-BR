@@ -3,7 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>BitHelp.Core.Type.pt_BR</RootNamespace>
-    <Version>0.1.1</Version>
+    <Version>0.1.2</Version>
     <Authors>Renato Pacheco</Authors>
     <PackageProjectUrl></PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
