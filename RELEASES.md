@@ -1,5 +1,12 @@
 # BitHelp.Core.Type.pt-BR
 
+## Release 0.1.1
+
+**Features:**
+
+- Fixing namespace.
+- Adding more build settings.
+
 ## Release 0.1.0
 
 **Features:**

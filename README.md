@@ -30,17 +30,12 @@ dotnet add package BitHelp.Core.Type.pt-BR
 
 ## Latest releases
 
-#### Release 0.1.0
+## Release 0.1.1
 
 **Features:**
 
-- Adding type CEP.
-- Adding type CNPJ.
-- Adding type CPF.
-- Adding type Date.
-- Adding type Phone.
-- Adding type PIS.
-- Adding type UF.
+- Fixing namespace.
+- Adding more build settings.
 
 To read about others releases access [RELEASES.md](./RELEASES.md)
 
