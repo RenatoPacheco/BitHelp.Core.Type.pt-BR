@@ -13,6 +13,12 @@
     <Description>Project with a collection of data types usually used in Brazil.</Description>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/RenatoPacheco/BitHelp.Core.Type.pt-BR</RepositoryUrl>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources> 
+    <Deterministic>true</Deterministic>
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
     <PackageReleaseNotes>
       Release:
 
@@ -26,6 +32,10 @@
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1" PrivateAssets="All"/>
+  </ItemGroup>
 
   <ItemGroup>
     <Compile Update="Resources\Resource.Designer.cs">
