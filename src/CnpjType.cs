@@ -22,6 +22,9 @@ namespace BitHelp.Core.Type.pt_BR
         public static implicit operator string(CnpjType input) => input.ToString();
         public static implicit operator CnpjType(string input) => new CnpjType(input);
 
+        /// <summary>
+        /// Return value 00.000.000/0000-00
+        /// </summary>
         public static readonly CnpjType Empty = new CnpjType { _value = "00.000.000/0000-00" };
 
         public static void Parse(string input, out CnpjType output)

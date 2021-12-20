@@ -22,6 +22,9 @@ namespace BitHelp.Core.Type.pt_BR
         public static implicit operator string(CpfType input) => input.ToString();
         public static implicit operator CpfType(string input) => new CpfType(input);
 
+        /// <summary>
+        /// Return value 000.000.000-00
+        /// </summary>
         public static readonly CpfType Empty = new CpfType { _value = "000.000.000-00" };
 
         public static void Parse(string input, out CpfType output)

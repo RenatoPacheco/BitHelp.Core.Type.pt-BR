@@ -22,6 +22,9 @@ namespace BitHelp.Core.Type.pt_BR
         public static implicit operator string(UfType input) => input.ToString();
         public static implicit operator UfType(string input) => new UfType(input);
 
+        /// <summary>
+        /// Return value string.Empty
+        /// </summary>
         public static readonly UfType Empty = new UfType { _value = string.Empty };
 
         public static void Parse(string input, out UfType output)

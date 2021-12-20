@@ -22,6 +22,9 @@ namespace BitHelp.Core.Type.pt_BR
         public static implicit operator string(CepType input) => input.ToString();
         public static implicit operator CepType(string input) => new CepType(input);
 
+        /// <summary>
+        /// Return value 00000-000
+        /// </summary>
         public static readonly CepType Empty = new CepType { _value = "00000-000" };
 
         public static void Parse(string input, out CepType output)

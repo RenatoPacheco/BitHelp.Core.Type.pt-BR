@@ -22,6 +22,9 @@ namespace BitHelp.Core.Type.pt_BR
         public static implicit operator string(PisType input) => input.ToString();
         public static implicit operator PisType(string input) => new PisType(input);
 
+        /// <summary>
+        /// Return value 000.00000.00-0
+        /// </summary>
         public static readonly PisType Empty = new PisType { _value = "000.00000.00-0" };
 
         public static void Parse(string input, out PisType output)
