@@ -15,6 +15,8 @@ namespace BitHelp.Core.Type.pt_BR.Test
         }
 
         [Theory]
+        [InlineData("")]
+        [InlineData(null)]
         [InlineData("153.179.966-00")]
         [InlineData("15317996600")]
         public void Check_format_is_invalid(string input)
@@ -23,5 +25,16 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
             Assert.False(test.IsValid());
         }
+
+        [Fact]
+        public void Check_generate_is_valid()
+        {
+            string input = CpfType.Generate().ToString();
+            CpfType test = new(input);
+            Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
+            Assert.True(test.IsValid());
+        }
+
+
     }
 }

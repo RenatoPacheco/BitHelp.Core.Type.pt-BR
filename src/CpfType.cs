@@ -47,36 +47,42 @@ namespace BitHelp.Core.Type.pt_BR
             if (!string.IsNullOrEmpty(input))
             {
                 string pattern = @"^\d{3}[\. ]?\d{3}[\. ]?\d{3}[\- ]?\d{2}$";
-                if (Regex.IsMatch(input, pattern) && Validate(input))
+                if (Regex.IsMatch(input, pattern))
                 {
                     input = Regex.Replace(input, @"[^\d]", string.Empty);
-                    pattern = @"^(\d{3})(\d{3})(\d{3})(\d{2})$";
+                    output = GenerateDigit(input.Substring(0, 9));
 
-                    output = new CpfType
-                    {
-                        _value = Regex.Replace(input, pattern, "$1.$2.$3-$4"),
-                        _isValid = true
-                    };
-                    return true;
+                    if(output.ToString("N") == input)
+                        return true;
                 }
             }
             output = Empty;
             return false;
         }
 
-        private static bool Validate(string cpf)
+        /// <summary>
+        /// Generate a valid CPF
+        /// </summary>
+        /// <returns>A object CpfType with a CPF valid</returns>
+        public static CpfType Generate()
         {
+            string partialCpf = string.Empty;
+            for (int i = 0; i < 9; i++)
+                partialCpf += new Random().Next(0, 9).ToString();
+
+            return GenerateDigit(partialCpf);
+        }
+
+        private static CpfType GenerateDigit(string partialCpf)
+        {            
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[10] { 11, 10, 9, 8, 7, 6, 5, 4, 3, 2 };
             string tempCpf;
             string digito;
             int soma;
             int resto;
-            cpf = cpf.Trim();
-            cpf = cpf.Replace(".", "").Replace("-", "");
-            if (cpf.Length != 11)
-                return false;
-            tempCpf = cpf.Substring(0, 9);
+
+            tempCpf = partialCpf;
             soma = 0;
 
             for (int i = 0; i < 9; i++)
@@ -98,7 +104,13 @@ namespace BitHelp.Core.Type.pt_BR
                 resto = 11 - resto;
             digito = digito + resto.ToString();
 
-            return cpf.EndsWith(digito);
+            string pattern = @"^(\d{3})(\d{3})(\d{3})(\d{2})$";
+            return new CpfType {
+                _value = Regex.Replace(
+                    partialCpf + digito,
+                    pattern, "$1.$2.$3-$4"),
+                _isValid = true
+            };
         }
 
         public bool IsValid() => _isValid;
