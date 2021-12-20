@@ -47,42 +47,55 @@ namespace BitHelp.Core.Type.pt_BR
             if (!string.IsNullOrEmpty(input))
             {
                 string pattern = @"^\d{3}[\. ]?\d{5}[\. ]?\d{2}[\- ]?\d{1}$";
-                if (Regex.IsMatch(input, pattern) && Validate(input))
+                if (Regex.IsMatch(input, pattern))
                 {
                     input = Regex.Replace(input, @"[^\d]", string.Empty);
-                    pattern = @"^(\d{3})(\d{5})(\d{2})(\d{1})$";
+                    output = GenerateDigit(input.Substring(0, 10));
 
-                    output = new PisType
-                    {
-                        _value = Regex.Replace(input, pattern, "$1.$2.$3-$4"),
-                        _isValid = true
-                    };
-                    return true;
+                    if (output.ToString("N") == input)
+                        return true;
                 }
             }
             output = Empty;
             return false;
         }
 
-        private static bool Validate(string pis)
+        /// <summary>
+        /// Generate a valid PIS
+        /// </summary>
+        /// <returns>A object PisType with a PIS valid</returns>
+        public static PisType Generate()
+        {
+            string partialPis = string.Empty;
+            for (int i = 0; i < 10; i++)
+                partialPis += new Random().Next(0, 9).ToString();
+
+            return GenerateDigit(partialPis);
+        }
+
+        private static PisType GenerateDigit(string partialPis)
         {
             int[] multiplicador = new int[10] { 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int soma;
             int resto;
-            pis = pis.Trim();
-            pis = pis.Replace("-", "").Replace(".", "");
-            if (pis.Trim().Length != 11)
-                return false;
+            
             soma = 0;
             for (int i = 0; i < 10; i++)
-                soma += int.Parse(pis[i].ToString()) * multiplicador[i];
+                soma += int.Parse(partialPis[i].ToString()) * multiplicador[i];
             resto = soma % 11;
             if (resto < 2)
                 resto = 0;
             else
                 resto = 11 - resto;
 
-            return pis.EndsWith(resto.ToString());
+            string pattern = @"^(\d{3})(\d{5})(\d{2})(\d{1})$";
+            return new PisType
+            {
+                _value = Regex.Replace(
+                    partialPis + resto,
+                    pattern, "$1.$2.$3-$4"),
+                _isValid = true
+            };
         }
 
         public bool IsValid() => _isValid;

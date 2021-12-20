@@ -61,16 +61,16 @@ namespace BitHelp.Core.Type.pt_BR
         }
 
         /// <summary>
-        /// Generate a valid CNPF
+        /// Generate a valid CNPJ
         /// </summary>
         /// <returns>A object CnpjType with a CNPJ valid</returns>
         public static CnpjType Generate()
         {
-            string partialCpf = string.Empty;
+            string partialCnpj = string.Empty;
             for (int i = 0; i < 12; i++)
-                partialCpf += new Random().Next(0, 9).ToString();
+                partialCnpj += new Random().Next(0, 9).ToString();
 
-            return GenerateDigit(partialCpf);
+            return GenerateDigit(partialCnpj);
         }
 
         private static CnpjType GenerateDigit(string partialCnpj)
