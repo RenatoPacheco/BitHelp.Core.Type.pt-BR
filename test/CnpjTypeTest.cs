@@ -22,5 +22,14 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
             Assert.False(test.IsValid());
         }
+
+        [Fact]
+        public void Check_generate_is_valid()
+        {
+            string input = CnpjType.Generate().ToString();
+            CnpjType test = new(input);
+            Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
+            Assert.True(test.IsValid());
+        }
     }
 }

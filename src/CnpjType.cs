@@ -47,24 +47,33 @@ namespace BitHelp.Core.Type.pt_BR
             if (!string.IsNullOrEmpty(input))
             {
                 string pattern = @"^\d{2}[\. ]?\d{3}[\. ]?\d{3}[\/ ]?\d{4}[\- ]?\d{2}$";
-                if (Regex.IsMatch(input, pattern) && Validate(input))
+                if (Regex.IsMatch(input, pattern))
                 {
                     input = Regex.Replace(input, @"[^\d]", string.Empty);
-                    pattern = @"^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$";
+                    output = GenerateDigit(input.Substring(0, 12));
 
-                    output = new CnpjType
-                    {
-                        _value = Regex.Replace(input, pattern, "$1.$2.$3/$4-$5"),
-                        _isValid = true
-                    };
-                    return true;
+                    if (output.ToString("N") == input)
+                        return true;
                 }
             }
             output = Empty;
             return false;
         }
 
-        private static bool Validate(string cnpj)
+        /// <summary>
+        /// Generate a valid CNPF
+        /// </summary>
+        /// <returns>A object CnpjType with a CNPJ valid</returns>
+        public static CnpjType Generate()
+        {
+            string partialCpf = string.Empty;
+            for (int i = 0; i < 12; i++)
+                partialCpf += new Random().Next(0, 9).ToString();
+
+            return GenerateDigit(partialCpf);
+        }
+
+        private static CnpjType GenerateDigit(string partialCnpj)
         {
             int[] multiplicador1 = new int[12] { 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
             int[] multiplicador2 = new int[13] { 6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2 };
@@ -72,12 +81,10 @@ namespace BitHelp.Core.Type.pt_BR
             int resto;
             string digito;
             string tempCnpj;
-            cnpj = cnpj.Trim();
-            cnpj = cnpj.Replace(".", "").Replace("-", "").Replace("/", "");
-            if (cnpj.Length != 14)
-                return false;
-            tempCnpj = cnpj.Substring(0, 12);
+
+            tempCnpj = partialCnpj;
             soma = 0;
+
             for (int i = 0; i < 12; i++)
                 soma += int.Parse(tempCnpj[i].ToString()) * multiplicador1[i];
             resto = (soma % 11);
@@ -97,7 +104,14 @@ namespace BitHelp.Core.Type.pt_BR
                 resto = 11 - resto;
             digito = digito + resto.ToString();
 
-            return cnpj.EndsWith(digito);
+            string pattern = @"^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})$";
+            return new CnpjType
+            {
+                _value = Regex.Replace(
+                    partialCnpj + digito,
+                    pattern, "$1.$2.$3/$4-$5"),
+                _isValid = true
+            };
         }
 
         public bool IsValid() => _isValid;
