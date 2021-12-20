@@ -30,11 +30,14 @@ dotnet add package BitHelp.Core.Type.pt-BR
 
 ## Latest releases
 
-## Release 0.1.3
+## Release 0.2.0
 
 **Features:**
 
-- Removing tag deterministic.
+- Adding generate CPF.
+- Adding generate CNPJ.
+- Adding generate PIS.
+- Adding summary about empty value.
 
 To read about others releases access [RELEASES.md](./RELEASES.md)
 

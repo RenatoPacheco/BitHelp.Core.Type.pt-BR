@@ -1,9 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>BitHelp.Core.Type.pt_BR</RootNamespace>
-    <Version>0.1.3</Version>
+    <Version>0.2.0</Version>
     <Authors>Renato Pacheco</Authors>
     <PackageProjectUrl></PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
@@ -20,13 +20,10 @@
     <PackageReleaseNotes>
       Release:
 
-      - Adding type CEP.
-      - Adding type CNPJ.
-      - Adding type CPF.
-      - Adding type Date.
-      - Adding type Phone.
-      - Adding type PIS.
-      - Adding type UF.
+      - Adding generate CPF.
+      - Adding generate CNPJ.
+      - Adding generate PIS.
+      - Adding summary about empty value.
     </PackageReleaseNotes>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>

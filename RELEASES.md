@@ -1,5 +1,14 @@
 # BitHelp.Core.Type.pt-BR
 
+## Release 0.2.0
+
+**Features:**
+
+- Adding generate CPF.
+- Adding generate CNPJ.
+- Adding generate PIS.
+- Adding summary about empty value.
+
 ## Release 0.1.3
 
 **Features:**
