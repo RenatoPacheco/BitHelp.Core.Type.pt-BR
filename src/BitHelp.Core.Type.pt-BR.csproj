@@ -3,14 +3,14 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <RootNamespace>BitHelp.Core.Type.pt_BR</RootNamespace>
-    <Version>0.2.0</Version>
+    <Version>0.3.0</Version>
     <Authors>Renato Pacheco</Authors>
     <PackageProjectUrl></PackageProjectUrl>
     <NeutralLanguage>en</NeutralLanguage>
     <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <PackageOutputPath>../nuget</PackageOutputPath>
-    <Description>Project for data validation.</Description>
+    <Description>Project with a collection of data types usually used in Brazil.</Description>
     <RepositoryType>Git</RepositoryType>
     <RepositoryUrl>https://github.com/RenatoPacheco/BitHelp.Core.Type.pt-BR</RepositoryUrl>
     <PackageReleaseNotes>
@@ -19,7 +19,7 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <PackageReadmeFile>README.md</PackageReadmeFile>
-    <PackageTags>validation;netcore;netstandard;framework;</PackageTags>
+    <PackageTags>datatype;netcore;netstandard;framework;</PackageTags>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +27,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BitHelp.Core.Extend" Version="0.6.0" />
     <PackageReference Include="Microsoft.SourceLink.GitHub" Version="1.1.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>

@@ -27,14 +27,9 @@ dotnet add package BitHelp.Core.Type.pt-BR
 
 ## Latest releases
 
-## Release 0.2.0
+## Release 0.3.0
 
-**Features:**
-
-- Adding generate CPF.
-- Adding generate CNPJ.
-- Adding generate PIS.
-- Adding summary about empty value.
+- refactor: Update integration test
 
 To read about others releases access [RELEASES.md](https://github.com/RenatoPacheco/BitHelp.Core.Type.pt-BR/blob/master/RELEASES.md)
 
