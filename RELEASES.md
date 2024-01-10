@@ -1,5 +1,9 @@
 # BitHelp.Core.Type.pt-BR
 
+## Release 0.3.0
+
+- refactor: Update integration test
+
 ## Release 0.2.0
 
 **Features:**
