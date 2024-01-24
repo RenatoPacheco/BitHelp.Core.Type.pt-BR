@@ -23,11 +23,6 @@ namespace BitHelp.Core.Type.pt_BR
         public static implicit operator string(DateType input) => input.ToString();
         public static implicit operator DateType(string input) => new DateType(input);
 
-        /// <summary>
-        /// Return value dd/mm/aaaa
-        /// </summary>
-        public static readonly DateType Empty = new DateType { _value = "dd/mm/aaaa" };
-
         public static DateType Parse(string input)
         {
             if (TryParse(input, out DateType result))
@@ -70,7 +65,7 @@ namespace BitHelp.Core.Type.pt_BR
                     }
                 }
             }
-            output = Empty;
+            output = input;
             return false;
         }
 
