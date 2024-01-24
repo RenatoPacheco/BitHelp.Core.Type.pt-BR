@@ -12,8 +12,6 @@ namespace BitHelp.Core.Type.pt_BR
         {
             TryParse(input, out CnpjType output);
             this = output;
-            if (!IsValid())
-                _value = input?.Trim() ?? string.Empty;
         }
 
         private string _value;
@@ -54,7 +52,11 @@ namespace BitHelp.Core.Type.pt_BR
                         return true;
                 }
             }
-            output = input;
+            output = new CnpjType
+            {
+                _value = input ?? string.Empty,
+                _isValid = false
+            };
             return false;
         }
 

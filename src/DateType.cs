@@ -13,8 +13,6 @@ namespace BitHelp.Core.Type.pt_BR
         {
             TryParse(input, out DateType output);
             this = output;
-            if (!IsValid())
-                _value = input?.Trim() ?? string.Empty;
         }
 
         private string _value;
@@ -65,7 +63,11 @@ namespace BitHelp.Core.Type.pt_BR
                     }
                 }
             }
-            output = input;
+            output = new DateType
+            {
+                _value = input ?? string.Empty,
+                _isValid = false
+            };
             return false;
         }
 

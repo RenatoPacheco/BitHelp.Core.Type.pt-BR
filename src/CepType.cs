@@ -12,8 +12,6 @@ namespace BitHelp.Core.Type.pt_BR
         {
             TryParse(input, out CepType output);
             this = output;
-            if (!IsValid())
-                _value = input?.Trim() ?? string.Empty;
         }
 
         private string _value;
@@ -49,7 +47,7 @@ namespace BitHelp.Core.Type.pt_BR
                 {
                     input = Regex.Replace(input, @"[^\d]", string.Empty);
                     pattern = @"^(\d{5})(\d{3})$";
-                    
+
                     output = new CepType
                     {
                         _value = Regex.Replace(input, pattern, "$1-$2"),
@@ -58,7 +56,11 @@ namespace BitHelp.Core.Type.pt_BR
                     return true;
                 }
             }
-            output = input;
+            output = new CepType
+            {
+                _value = input ?? string.Empty,
+                _isValid = false
+            };
             return false;
         }
 
