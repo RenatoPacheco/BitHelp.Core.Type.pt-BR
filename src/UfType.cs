@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using BitHelp.Core.Type.pt_BR.Helpers;
 using BitHelp.Core.Type.pt_BR.Resources;
 
 namespace BitHelp.Core.Type.pt_BR
@@ -44,7 +45,7 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 string value = input;
                 string pattern = @"^[a-zA-Z]{2}$";
-                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, AppSettings.RegEx.TimeOut))
                 {
                     output = new UfType
                     {

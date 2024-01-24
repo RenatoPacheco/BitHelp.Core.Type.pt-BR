@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using BitHelp.Core.Type.pt_BR.Helpers;
 using BitHelp.Core.Type.pt_BR.Resources;
 
 namespace BitHelp.Core.Type.pt_BR
@@ -44,9 +45,9 @@ namespace BitHelp.Core.Type.pt_BR
             if (!string.IsNullOrEmpty(value))
             {
                 string pattern = @"^\d{2}[\. ]?\d{3}[\. ]?\d{3}[\/ ]?\d{4}[\- ]?\d{2}$";
-                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, AppSettings.RegEx.TimeOut))
                 {
-                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
                     output = GenerateDigit(value.Substring(0, 12));
 
                     if (output.ToString("N") == value)
@@ -112,7 +113,7 @@ namespace BitHelp.Core.Type.pt_BR
                     partialCnpj + digito,
                     pattern, "$1.$2.$3/$4-$5", 
                     RegexOptions.None, 
-                    Config.RegEx.TimeOut),
+                    AppSettings.RegEx.TimeOut),
                 _isValid = true
             };
         }
@@ -145,7 +146,7 @@ namespace BitHelp.Core.Type.pt_BR
                     return _value;
 
                 case 'N':
-                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
+                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
 
                 default:
                     throw new ArgumentException(

@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace BitHelp.Core.Type.pt_BR.Resources
+namespace BitHelp.Core.Type.pt_BR.Helpers
 {
-    internal static class Config
+    internal static class AppSettings
     {
         public static class RegEx
         {

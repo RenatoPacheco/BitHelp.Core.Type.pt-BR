@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Text.RegularExpressions;
+using BitHelp.Core.Type.pt_BR.Helpers;
 using BitHelp.Core.Type.pt_BR.Resources;
 
 namespace BitHelp.Core.Type.pt_BR
@@ -45,12 +46,12 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 string value = input;
                 string pattern = @"^(\(0?[1-9]\d\) ?|0?[1-9]\d ?)?(9 ?)?([1-9]\d{3})(\-| )?(\d{4})$";
-                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, AppSettings.RegEx.TimeOut))
                 {
                     StringBuilder result = new StringBuilder();
-                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
-                    value = Regex.Replace(value, @"^0", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
-                    MatchCollection matches = Regex.Matches(value, pattern, RegexOptions.None, Config.RegEx.TimeOut);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
+                    value = Regex.Replace(value, @"^0", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
+                    MatchCollection matches = Regex.Matches(value, pattern, RegexOptions.None, AppSettings.RegEx.TimeOut);
 
                     if (matches[0].Groups[1].Value != string.Empty)
                         result.Append($"({matches[0].Groups[1].Value.Trim()}) ");
@@ -105,7 +106,7 @@ namespace BitHelp.Core.Type.pt_BR
                     return _value;
 
                 case 'N':
-                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
+                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
 
                 default:
                     throw new ArgumentException(
