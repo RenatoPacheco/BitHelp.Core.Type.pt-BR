@@ -39,18 +39,19 @@ namespace BitHelp.Core.Type.pt_BR
 
         public static bool TryParse(string input, out CepType output)
         {
-            input = input?.Trim();
+            input = input?.Trim() ?? string.Empty;
             if (!string.IsNullOrEmpty(input))
             {
+                string value = input;
                 string pattern = @"^\d{5}[\- ]?\d{3}$";
-                if (Regex.IsMatch(input, pattern))
+                if (Regex.IsMatch(value, pattern))
                 {
-                    input = Regex.Replace(input, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty);
                     pattern = @"^(\d{5})(\d{3})$";
 
                     output = new CepType
                     {
-                        _value = Regex.Replace(input, pattern, "$1-$2"),
+                        _value = Regex.Replace(value, pattern, "$1-$2"),
                         _isValid = true
                     };
                     return true;
@@ -58,7 +59,7 @@ namespace BitHelp.Core.Type.pt_BR
             }
             output = new CepType
             {
-                _value = input ?? string.Empty,
+                _value = input,
                 _isValid = false
             };
             return false;
@@ -78,10 +79,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            format = format?.Trim()?.ToUpper();
-
-            if (format == null || format == string.Empty)
-                format = "D";
+            format = format?.Trim().ToUpper() ?? string.Empty;
 
             if (format.Length != 1)
                 throw new ArgumentException(
@@ -110,7 +108,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public bool Equals(CepType other)
         {
-            return _value == other._value;
+            return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -125,11 +123,6 @@ namespace BitHelp.Core.Type.pt_BR
 
         public int CompareTo(object obj)
         {
-            if (obj is null)
-            {
-                return 1;
-            }
-
             if (obj is CepType phone)
             {
                 return CompareTo(phone);

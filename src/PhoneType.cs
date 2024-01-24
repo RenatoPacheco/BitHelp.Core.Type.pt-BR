@@ -40,16 +40,17 @@ namespace BitHelp.Core.Type.pt_BR
 
         public static bool TryParse(string input, out PhoneType output)
         {
-            input = input?.Trim();
+            input = input?.Trim() ?? string.Empty;
             if (!string.IsNullOrEmpty(input))
             {
+                string value = input;
                 string pattern = @"^(\(0?[1-9]\d\) ?|0?[1-9]\d ?)?(9 ?)?([1-9]\d{3})(\-| )?(\d{4})$";
-                if (Regex.IsMatch(input, pattern))
+                if (Regex.IsMatch(value, pattern))
                 {
                     StringBuilder result = new StringBuilder();
-                    input = Regex.Replace(input, @"[^\d]", string.Empty);
-                    input = Regex.Replace(input, @"^0", string.Empty);
-                    MatchCollection matches = Regex.Matches(input, pattern);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"^0", string.Empty);
+                    MatchCollection matches = Regex.Matches(value, pattern);
 
                     if (matches[0].Groups[1].Value != string.Empty)
                         result.Append($"({matches[0].Groups[1].Value.Trim()}) ");
@@ -70,7 +71,7 @@ namespace BitHelp.Core.Type.pt_BR
             }
             output = new PhoneType
             {
-                _value = input ?? string.Empty,
+                _value = input,
                 _isValid = false
             };
             return false;
@@ -90,10 +91,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            format = format?.Trim()?.ToUpper();
-
-            if (format == null || format == string.Empty)
-                format = "D";
+            format = format?.Trim().ToUpper() ?? string.Empty;
 
             if (format.Length != 1)
                 throw new ArgumentException(
@@ -122,7 +120,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public bool Equals(PhoneType other)
         {
-            return _value == other._value;
+            return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -137,11 +135,6 @@ namespace BitHelp.Core.Type.pt_BR
 
         public int CompareTo(object obj)
         {
-            if (obj is null)
-            {
-                return 1;
-            }
-
             if (obj is PhoneType phone)
             {
                 return CompareTo(phone);

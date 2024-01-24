@@ -39,15 +39,16 @@ namespace BitHelp.Core.Type.pt_BR
 
         public static bool TryParse(string input, out UfType output)
         {
-            input = input?.Trim();
+            input = input?.Trim() ?? string.Empty;
             if (!string.IsNullOrEmpty(input))
             {
+                string value = input;
                 string pattern = @"^[a-zA-Z]{2}$";
-                if (Regex.IsMatch(input, pattern))
+                if (Regex.IsMatch(value, pattern))
                 {
                     output = new UfType
                     {
-                        _value = input.ToUpper(),
+                        _value = value.ToUpper(),
                         _isValid = true
                     };
                     return true;
@@ -55,7 +56,7 @@ namespace BitHelp.Core.Type.pt_BR
             }
             output = new UfType
             {
-                _value = input ?? string.Empty,
+                _value = input,
                 _isValid = false
             };
             return false;
@@ -85,7 +86,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public bool Equals(UfType other)
         {
-            return _value == other._value;
+            return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -100,11 +101,6 @@ namespace BitHelp.Core.Type.pt_BR
 
         public int CompareTo(object obj)
         {
-            if (obj is null)
-            {
-                return 1;
-            }
-
             if (obj is UfType phone)
             {
                 return CompareTo(phone);

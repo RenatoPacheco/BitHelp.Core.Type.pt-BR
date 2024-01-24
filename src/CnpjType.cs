@@ -39,22 +39,23 @@ namespace BitHelp.Core.Type.pt_BR
 
         public static bool TryParse(string input, out CnpjType output)
         {
-            input = input?.Trim();
-            if (!string.IsNullOrEmpty(input))
+            input = input?.Trim() ?? string.Empty;
+            string value = input;
+            if (!string.IsNullOrEmpty(value))
             {
                 string pattern = @"^\d{2}[\. ]?\d{3}[\. ]?\d{3}[\/ ]?\d{4}[\- ]?\d{2}$";
-                if (Regex.IsMatch(input, pattern))
+                if (Regex.IsMatch(value, pattern))
                 {
-                    input = Regex.Replace(input, @"[^\d]", string.Empty);
-                    output = GenerateDigit(input.Substring(0, 12));
+                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    output = GenerateDigit(value.Substring(0, 12));
 
-                    if (output.ToString("N") == input)
+                    if (output.ToString("N") == value)
                         return true;
                 }
             }
             output = new CnpjType
             {
-                _value = input ?? string.Empty,
+                _value = input,
                 _isValid = false
             };
             return false;
@@ -128,10 +129,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            format = format?.Trim()?.ToUpper();
-
-            if (format == null || format == string.Empty)
-                format = "D";
+            format = format?.Trim().ToUpper() ?? string.Empty;
 
             if (format.Length != 1)
                 throw new ArgumentException(
@@ -160,7 +158,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public bool Equals(CnpjType other)
         {
-            return _value == other._value;
+            return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -175,11 +173,6 @@ namespace BitHelp.Core.Type.pt_BR
 
         public int CompareTo(object obj)
         {
-            if (obj is null)
-            {
-                return 1;
-            }
-
             if (obj is CnpjType phone)
             {
                 return CompareTo(phone);

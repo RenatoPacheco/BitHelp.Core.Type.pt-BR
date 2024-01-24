@@ -39,22 +39,23 @@ namespace BitHelp.Core.Type.pt_BR
 
         public static bool TryParse(string input, out CpfType output)
         {
-            input = input?.Trim();
+            input = input?.Trim() ?? string.Empty;
             if (!string.IsNullOrEmpty(input))
             {
+                string value = input;
                 string pattern = @"^\d{3}[\. ]?\d{3}[\. ]?\d{3}[\- ]?\d{2}$";
-                if (Regex.IsMatch(input, pattern))
+                if (Regex.IsMatch(value, pattern))
                 {
-                    input = Regex.Replace(input, @"[^\d]", string.Empty);
-                    output = GenerateDigit(input.Substring(0, 9));
+                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    output = GenerateDigit(value.Substring(0, 9));
 
-                    if(output.ToString("N") == input)
+                    if(output.ToString("N") == value)
                         return true;
                 }
             }
             output = new CpfType
             {
-                _value = input ?? string.Empty,
+                _value = input,
                 _isValid = false
             };
             return false;
@@ -127,10 +128,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            format = format?.Trim()?.ToUpper();
-
-            if (format == null || format == string.Empty)
-                format = "D";
+            format = format?.Trim().ToUpper() ?? string.Empty;
 
             if (format.Length != 1)
                 throw new ArgumentException(
@@ -159,7 +157,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public bool Equals(CpfType other)
         {
-            return _value == other._value;
+            return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -174,11 +172,6 @@ namespace BitHelp.Core.Type.pt_BR
 
         public int CompareTo(object obj)
         {
-            if (obj is null)
-            {
-                return 1;
-            }
-
             if (obj is CpfType phone)
             {
                 return CompareTo(phone);

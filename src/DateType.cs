@@ -40,17 +40,18 @@ namespace BitHelp.Core.Type.pt_BR
 
         public static bool TryParse(string input, out DateType output)
         {
-            input = input?.Trim();
+            input = input?.Trim() ?? string.Empty;
             if (!string.IsNullOrEmpty(input))
             {
+                string value = input;
                 string pattern = @"^\d{1,2}[\/\-]?\d{1,2}[\/\-]?\d{4}$";
-                if (Regex.IsMatch(input, pattern))
+                if (Regex.IsMatch(value, pattern))
                 {
-                    input = Regex.Replace(input, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty);
                     pattern = @"^(\d{1,2})(\d{1,2})(\d{4})$";
-                    input = Regex.Replace(input, pattern, "$1/$2/$3");
+                    value = Regex.Replace(value, pattern, "$1/$2/$3");
                     
-                    if(DateTime.TryParse(input,
+                    if(DateTime.TryParse(value,
                         CultureInfo.GetCultureInfo("pt-BR"),
                         DateTimeStyles.None, out DateTime v))
                     {
@@ -65,7 +66,7 @@ namespace BitHelp.Core.Type.pt_BR
             }
             output = new DateType
             {
-                _value = input ?? string.Empty,
+                _value = input,
                 _isValid = false
             };
             return false;
@@ -95,7 +96,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public bool Equals(DateType other)
         {
-            return _value == other._value;
+            return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
@@ -110,11 +111,6 @@ namespace BitHelp.Core.Type.pt_BR
 
         public int CompareTo(object obj)
         {
-            if (obj is null)
-            {
-                return 1;
-            }
-
             if (obj is DateType phone)
             {
                 return CompareTo(phone);
