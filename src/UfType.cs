@@ -44,7 +44,7 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 string value = input;
                 string pattern = @"^[a-zA-Z]{2}$";
-                if (Regex.IsMatch(value, pattern))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
                 {
                     output = new UfType
                     {

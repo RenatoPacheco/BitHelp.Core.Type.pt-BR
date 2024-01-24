@@ -46,7 +46,7 @@ namespace BitHelp.Core.Type.pt_BR
                 string pattern = @"^\d{2}[\. ]?\d{3}[\. ]?\d{3}[\/ ]?\d{4}[\- ]?\d{2}$";
                 if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
                 {
-                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
                     output = GenerateDigit(value.Substring(0, 12));
 
                     if (output.ToString("N") == value)
