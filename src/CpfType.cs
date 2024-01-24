@@ -44,9 +44,9 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 string value = input;
                 string pattern = @"^\d{3}[\. ]?\d{3}[\. ]?\d{3}[\- ]?\d{2}$";
-                if (Regex.IsMatch(value, pattern))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
                 {
-                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
                     output = GenerateDigit(value.Substring(0, 9));
 
                     if(output.ToString("N") == value)
@@ -109,7 +109,9 @@ namespace BitHelp.Core.Type.pt_BR
             return new CpfType {
                 _value = Regex.Replace(
                     partialCpf + digito,
-                    pattern, "$1.$2.$3-$4"),
+                    pattern, "$1.$2.$3-$4", 
+                    RegexOptions.None, 
+                    Config.RegEx.TimeOut),
                 _isValid = true
             };
         }
@@ -142,7 +144,7 @@ namespace BitHelp.Core.Type.pt_BR
                     return _value;
 
                 case 'N':
-                    return Regex.Replace(_value, @"[^\d]", string.Empty);
+                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
 
                 default:
                     throw new ArgumentException(

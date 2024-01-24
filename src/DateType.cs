@@ -45,11 +45,11 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 string value = input;
                 string pattern = @"^\d{1,2}[\/\-]?\d{1,2}[\/\-]?\d{4}$";
-                if (Regex.IsMatch(value, pattern))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
                 {
-                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
                     pattern = @"^(\d{1,2})(\d{1,2})(\d{4})$";
-                    value = Regex.Replace(value, pattern, "$1/$2/$3");
+                    value = Regex.Replace(value, pattern, "$1/$2/$3", RegexOptions.None, Config.RegEx.TimeOut);
                     
                     if(DateTime.TryParse(value,
                         CultureInfo.GetCultureInfo("pt-BR"),

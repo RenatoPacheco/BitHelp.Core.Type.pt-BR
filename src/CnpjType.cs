@@ -44,7 +44,7 @@ namespace BitHelp.Core.Type.pt_BR
             if (!string.IsNullOrEmpty(value))
             {
                 string pattern = @"^\d{2}[\. ]?\d{3}[\. ]?\d{3}[\/ ]?\d{4}[\- ]?\d{2}$";
-                if (Regex.IsMatch(value, pattern))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
                 {
                     value = Regex.Replace(value, @"[^\d]", string.Empty);
                     output = GenerateDigit(value.Substring(0, 12));
@@ -110,7 +110,9 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 _value = Regex.Replace(
                     partialCnpj + digito,
-                    pattern, "$1.$2.$3/$4-$5"),
+                    pattern, "$1.$2.$3/$4-$5", 
+                    RegexOptions.None, 
+                    Config.RegEx.TimeOut),
                 _isValid = true
             };
         }
@@ -143,7 +145,7 @@ namespace BitHelp.Core.Type.pt_BR
                     return _value;
 
                 case 'N':
-                    return Regex.Replace(_value, @"[^\d]", string.Empty);
+                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
 
                 default:
                     throw new ArgumentException(

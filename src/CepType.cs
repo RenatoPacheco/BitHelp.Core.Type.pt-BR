@@ -44,14 +44,14 @@ namespace BitHelp.Core.Type.pt_BR
             {
                 string value = input;
                 string pattern = @"^\d{5}[\- ]?\d{3}$";
-                if (Regex.IsMatch(value, pattern))
+                if (Regex.IsMatch(value, pattern, RegexOptions.None, Config.RegEx.TimeOut))
                 {
-                    value = Regex.Replace(value, @"[^\d]", string.Empty);
+                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
                     pattern = @"^(\d{5})(\d{3})$";
 
                     output = new CepType
                     {
-                        _value = Regex.Replace(value, pattern, "$1-$2"),
+                        _value = Regex.Replace(value, pattern, "$1-$2", RegexOptions.None, Config.RegEx.TimeOut),
                         _isValid = true
                     };
                     return true;
@@ -93,7 +93,7 @@ namespace BitHelp.Core.Type.pt_BR
                     return _value;
 
                 case 'N':
-                    return Regex.Replace(_value, @"[^\d]", string.Empty);
+                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, Config.RegEx.TimeOut);
 
                 default:
                     throw new ArgumentException(
