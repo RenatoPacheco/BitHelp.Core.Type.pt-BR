@@ -27,11 +27,11 @@ namespace BitHelp.Core.Type.pt_BR
         /// </summary>
         public static readonly CpfType Empty = new CpfType { _value = "000.000.000-00" };
 
-        public static void Parse(string input, out CpfType output)
+        public static CpfType Parse(string input)
         {
             if (TryParse(input, out CpfType result))
             {
-                output = result;
+                return result;
             }
             else
             {

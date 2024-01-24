@@ -28,11 +28,11 @@ namespace BitHelp.Core.Type.pt_BR
         /// </summary>
         public static readonly DateType Empty = new DateType { _value = "dd/mm/aaaa" };
 
-        public static void Parse(string input, out DateType output)
+        public static DateType Parse(string input)
         {
             if (TryParse(input, out DateType result))
             {
-                output = result;
+                return result;
             }
             else
             {

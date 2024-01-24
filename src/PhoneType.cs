@@ -28,11 +28,11 @@ namespace BitHelp.Core.Type.pt_BR
         /// </summary>
         public static readonly PhoneType Empty = new PhoneType { _value = "(00) 0000-0000" };
 
-        public static void Parse(string input, out PhoneType output)
+        public static PhoneType Parse(string input)
         {
             if (TryParse(input, out PhoneType result))
             {
-                output = result;
+                return result;
             }
             else
             {

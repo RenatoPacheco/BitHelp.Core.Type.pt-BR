@@ -27,11 +27,11 @@ namespace BitHelp.Core.Type.pt_BR
         /// </summary>
         public static readonly UfType Empty = new UfType { _value = string.Empty };
 
-        public static void Parse(string input, out UfType output)
+        public static UfType Parse(string input)
         {
             if (TryParse(input, out UfType result))
             {
-                output = result;
+                return result;
             }
             else
             {

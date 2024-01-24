@@ -27,11 +27,11 @@ namespace BitHelp.Core.Type.pt_BR
         /// </summary>
         public static readonly CepType Empty = new CepType { _value = "00000-000" };
 
-        public static void Parse(string input, out CepType output)
+        public static CepType Parse(string input)
         {
             if (TryParse(input, out CepType result))
             {
-                output = result;
+                return result;
             }
             else
             {

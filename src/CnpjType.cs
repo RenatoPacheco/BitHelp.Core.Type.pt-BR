@@ -27,11 +27,11 @@ namespace BitHelp.Core.Type.pt_BR
         /// </summary>
         public static readonly CnpjType Empty = new CnpjType { _value = "00.000.000/0000-00" };
 
-        public static void Parse(string input, out CnpjType output)
+        public static CnpjType Parse(string input)
         {
             if (TryParse(input, out CnpjType result))
             {
-                output = result;
+                return result;
             }
             else
             {
