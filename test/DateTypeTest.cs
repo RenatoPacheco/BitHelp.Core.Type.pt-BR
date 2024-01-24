@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace BitHelp.Core.Type.pt_BR.Test
 {
@@ -13,6 +14,17 @@ namespace BitHelp.Core.Type.pt_BR.Test
             DateType test = new(input);
             Assert.Equal(expected, test.ToString());
             Assert.True(test.IsValid());
+
+            test = DateType.Parse(input);
+            Assert.Equal(expected, test.ToString());
+            Assert.True(test.IsValid());
+
+            test = input;
+            Assert.Equal(expected, test.ToString());
+            Assert.True(test.IsValid());
+
+            input = test;
+            Assert.Equal(expected, input);
         }
 
         [Theory]
@@ -24,6 +36,22 @@ namespace BitHelp.Core.Type.pt_BR.Test
             DateType test = new(input);
             Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
             Assert.False(test.IsValid());
+
+            test = input;
+            Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
+            Assert.False(test.IsValid());
+        }
+
+        [Theory]
+        [InlineData("31 12 2020")]
+        [InlineData("12/31/2020")]
+        [InlineData("31/12/20")]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData("  ")]
+        public void Check_parse_exception(string input)
+        {
+            Assert.Throws<ArgumentException>(() => DateType.Parse(input));
         }
     }
 }
