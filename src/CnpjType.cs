@@ -51,7 +51,10 @@ namespace BitHelp.Core.Type.pt_BR
                     output = GenerateDigit(value.Substring(0, 12));
 
                     if (output.ToString("N") == value)
+                    {
+                        output._isValid = true;
                         return true;
+                    }
                 }
             }
             output = new CnpjType

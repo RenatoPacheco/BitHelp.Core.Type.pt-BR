@@ -50,8 +50,11 @@ namespace BitHelp.Core.Type.pt_BR
                     value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
                     output = GenerateDigit(value.Substring(0, 9));
 
-                    if(output.ToString("N") == value)
+                    if (output.ToString("N") == value)
+                    {
+                        output._isValid = true;
                         return true;
+                    }
                 }
             }
             output = new CpfType
