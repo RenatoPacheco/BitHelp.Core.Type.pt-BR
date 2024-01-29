@@ -6,8 +6,8 @@ using BitHelp.Core.Type.pt_BR.Resources;
 namespace BitHelp.Core.Type.pt_BR
 {
     public struct PisType
-        : IFormattable, IComparable,
-        IComparable<PisType>, IEquatable<PisType>, IConvertible
+        : IFormattable, IComparable, IConvertible,
+        IComparable<PisType>, IEquatable<PisType>
     {
         public PisType(string input)
         {

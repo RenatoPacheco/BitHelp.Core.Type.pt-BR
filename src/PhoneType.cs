@@ -7,8 +7,8 @@ using BitHelp.Core.Type.pt_BR.Resources;
 namespace BitHelp.Core.Type.pt_BR
 {
     public struct PhoneType 
-        : IFormattable, IComparable,
-        IComparable<PhoneType>, IEquatable<PhoneType>, IConvertible
+        : IFormattable, IComparable, IConvertible,
+        IComparable<PhoneType>, IEquatable<PhoneType>
     {
         public PhoneType(string input)
         {

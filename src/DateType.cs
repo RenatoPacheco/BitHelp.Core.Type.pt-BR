@@ -7,8 +7,8 @@ using BitHelp.Core.Type.pt_BR.Resources;
 namespace BitHelp.Core.Type.pt_BR
 {
     public struct DateType
-        : IFormattable, IComparable,
-        IComparable<DateType>, IEquatable<DateType>, IConvertible
+        : IFormattable, IComparable, IConvertible,
+        IComparable<DateType>, IEquatable<DateType>
     {
         public DateType(string input)
         {

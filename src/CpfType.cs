@@ -6,8 +6,8 @@ using BitHelp.Core.Type.pt_BR.Resources;
 namespace BitHelp.Core.Type.pt_BR
 {
     public struct CpfType
-        : IFormattable, IComparable,
-        IComparable<CpfType>, IEquatable<CpfType>, IConvertible
+        : IFormattable, IComparable, IConvertible,
+        IComparable<CpfType>, IEquatable<CpfType>
     {
         public CpfType(string input)
         {

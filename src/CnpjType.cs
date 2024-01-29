@@ -6,8 +6,8 @@ using BitHelp.Core.Type.pt_BR.Resources;
 namespace BitHelp.Core.Type.pt_BR
 {
     public struct CnpjType
-        : IFormattable, IComparable,
-        IComparable<CnpjType>, IEquatable<CnpjType>, IConvertible
+        : IFormattable, IComparable, IConvertible,
+        IComparable<CnpjType>, IEquatable<CnpjType>
     {
         public CnpjType(string input)
         {
