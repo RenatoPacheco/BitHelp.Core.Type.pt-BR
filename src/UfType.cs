@@ -131,6 +131,16 @@ namespace BitHelp.Core.Type.pt_BR
             return left.CompareTo(right) == -1;
         }
 
+        public static bool operator >=(UfType left, UfType right)
+        {
+            return left > right || left == right;
+        }
+
+        public static bool operator <=(UfType left, UfType right)
+        {
+            return left < right || left == right;
+        }
+
         #region IConvertible implementation
 
         public TypeCode GetTypeCode()

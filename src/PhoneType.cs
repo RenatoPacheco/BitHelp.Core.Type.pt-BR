@@ -165,6 +165,16 @@ namespace BitHelp.Core.Type.pt_BR
             return left.CompareTo(right) == -1;
         }
 
+        public static bool operator >=(PhoneType left, PhoneType right)
+        {
+            return left > right || left == right;
+        }
+
+        public static bool operator <=(PhoneType left, PhoneType right)
+        {
+            return left < right || left == right;
+        }
+
         #region IConvertible implementation
 
         public TypeCode GetTypeCode()
