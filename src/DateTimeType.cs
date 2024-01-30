@@ -1,29 +1,30 @@
 ﻿using System;
+using System.Globalization;
 using System.Text.RegularExpressions;
 using BitHelp.Core.Type.pt_BR.Helpers;
 using BitHelp.Core.Type.pt_BR.Resources;
 
 namespace BitHelp.Core.Type.pt_BR
 {
-    public struct CepType
+    public struct DateTimeType
         : IFormattable, IComparable,
-        IComparable<CepType>, IEquatable<CepType>
+        IComparable<DateTimeType>, IEquatable<DateTimeType>
     {
-        public CepType(string input)
+        public DateTimeType(string input)
         {
-            TryParse(input, out CepType output);
+            TryParse(input, out DateTimeType output);
             this = output;
         }
 
         private string _value;
         private bool _isValid;
 
-        public static implicit operator string(CepType input) => input.ToString();
-        public static implicit operator CepType(string input) => new CepType(input);
+        public static implicit operator string(DateTimeType input) => input.ToString();
+        public static implicit operator DateTimeType(string input) => new DateTimeType(input);
 
-        public static CepType Parse(string input)
+        public static DateTimeType Parse(string input)
         {
-            if (TryParse(input, out CepType result))
+            if (TryParse(input, out DateTimeType result))
             {
                 return result;
             }
@@ -38,27 +39,32 @@ namespace BitHelp.Core.Type.pt_BR
             }
         }
 
-        public static bool TryParse(string input, out CepType output)
+        public static bool TryParse(string input, out DateTimeType output)
         {
             input = input?.Trim() ?? string.Empty;
             if (!string.IsNullOrEmpty(input))
             {
                 string value = input;
-                string pattern = @"^\d{5}[\- ]?\d{3}$";
+                string pattern = @"^\d{1,2}[\/\-]?\d{1,2}[\/\-]?\d{4}";
+                IFormatProvider provider = CultureInfo.GetCultureInfo("pt-BR");
                 if (Regex.IsMatch(value, pattern, RegexOptions.None, AppSettings.RegEx.TimeOut))
                 {
-                    value = Regex.Replace(value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
-                    pattern = @"^(\d{5})(\d{3})$";
-
-                    output = new CepType
+                    pattern = @"[\/\-]+";
+                    value = Regex.Replace(value, pattern, "/", RegexOptions.None, AppSettings.RegEx.TimeOut);
+                    
+                    if(DateTime.TryParse(value, provider,
+                        DateTimeStyles.None, out DateTime v))
                     {
-                        _value = Regex.Replace(value, pattern, "$1-$2", RegexOptions.None, AppSettings.RegEx.TimeOut),
-                        _isValid = true
-                    };
-                    return true;
+                        output = new DateTimeType
+                        {
+                            _value = v.ToString("dd/MM/yyyy HH:mm:ss", provider),
+                            _isValid = true
+                        };
+                        return true;
+                    }
                 }
             }
-            output = new CepType
+            output = new DateTimeType
             {
                 _value = input,
                 _isValid = false
@@ -70,7 +76,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public override string ToString()
         {
-            return ToString("D", null);
+            return ToString(null, null);
         }
 
         public string ToString(string format)
@@ -80,26 +86,7 @@ namespace BitHelp.Core.Type.pt_BR
 
         public string ToString(string format, IFormatProvider formatProvider)
         {
-            format = format?.Trim().ToUpper() ?? string.Empty;
-
-            if (format.Length != 1)
-                throw new ArgumentException(
-                    nameof(format), Resource.TheValueIsNotValid);
-
-            char check = format[0];
-
-            switch (check)
-            {
-                case 'D':
-                    return _value;
-
-                case 'N':
-                    return Regex.Replace(_value, @"[^\d]", string.Empty, RegexOptions.None, AppSettings.RegEx.TimeOut);
-
-                default:
-                    throw new ArgumentException(
-                        nameof(format), Resource.TheValueIsNotValid);
-            }
+            return _value;
         }
 
         public override int GetHashCode()
@@ -107,24 +94,24 @@ namespace BitHelp.Core.Type.pt_BR
             return $"{_value}:{GetType()}".GetHashCode();
         }
 
-        public bool Equals(CepType other)
+        public bool Equals(DateTimeType other)
         {
             return GetHashCode() == other.GetHashCode();
         }
 
         public override bool Equals(object obj)
         {
-            return obj is CepType phone && Equals(phone);
+            return obj is DateTimeType phone && Equals(phone);
         }
 
-        public int CompareTo(CepType other)
+        public int CompareTo(DateTimeType other)
         {
             return _value.CompareTo(other._value);
         }
 
         public int CompareTo(object obj)
         {
-            if (obj is CepType phone)
+            if (obj is DateTimeType phone)
             {
                 return CompareTo(phone);
             }
@@ -133,32 +120,32 @@ namespace BitHelp.Core.Type.pt_BR
                 nameof(obj), Resource.ItIsNotAValidType);
         }
 
-        public static bool operator ==(CepType left, CepType right)
+        public static bool operator ==(DateTimeType left, DateTimeType right)
         {
             return left.Equals(right);
         }
 
-        public static bool operator !=(CepType left, CepType right)
+        public static bool operator !=(DateTimeType left, DateTimeType right)
         {
             return !(left == right);
         }
 
-        public static bool operator >(CepType left, CepType right)
+        public static bool operator >(DateTimeType left, DateTimeType right)
         {
             return left.CompareTo(right) == 1;
         }
 
-        public static bool operator <(CepType left, CepType right)
+        public static bool operator <(DateTimeType left, DateTimeType right)
         {
             return left.CompareTo(right) == -1;
         }
 
-        public static bool operator >=(CepType left, CepType right)
+        public static bool operator >=(DateTimeType left, DateTimeType right)
         {
             return left > right || left == right;
         }
 
-        public static bool operator <=(CepType left, CepType right)
+        public static bool operator <=(DateTimeType left, DateTimeType right)
         {
             return left < right || left == right;
         }
