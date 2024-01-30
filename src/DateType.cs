@@ -7,7 +7,7 @@ using BitHelp.Core.Type.pt_BR.Resources;
 namespace BitHelp.Core.Type.pt_BR
 {
     public struct DateType
-        : IFormattable, IComparable, IConvertible,
+        : IFormattable, IComparable,
         IComparable<DateType>, IEquatable<DateType>
     {
         public DateType(string input)
@@ -150,110 +150,5 @@ namespace BitHelp.Core.Type.pt_BR
         {
             return left < right || left == right;
         }
-
-        #region IConvertible implementation
-
-        public TypeCode GetTypeCode()
-        {
-            return TypeCode.String;
-        }
-
-        /// <internalonly/>
-        string IConvertible.ToString(IFormatProvider provider)
-        {
-            return _value;
-        }
-
-        /// <internalonly/>
-        bool IConvertible.ToBoolean(IFormatProvider provider)
-        {
-            return Convert.ToBoolean(_value);
-        }
-
-        /// <internalonly/>
-        char IConvertible.ToChar(IFormatProvider provider)
-        {
-            return Convert.ToChar(_value);
-        }
-
-        /// <internalonly/>
-        sbyte IConvertible.ToSByte(IFormatProvider provider)
-        {
-            return Convert.ToSByte(_value);
-        }
-
-        /// <internalonly/>
-        byte IConvertible.ToByte(IFormatProvider provider)
-        {
-            return Convert.ToByte(_value);
-        }
-
-        /// <internalonly/>
-        short IConvertible.ToInt16(IFormatProvider provider)
-        {
-            return Convert.ToInt16(_value);
-        }
-
-        /// <internalonly/>
-        ushort IConvertible.ToUInt16(IFormatProvider provider)
-        {
-            return Convert.ToUInt16(_value);
-        }
-
-        /// <internalonly/>
-        int IConvertible.ToInt32(IFormatProvider provider)
-        {
-            return Convert.ToInt32(_value);
-        }
-
-        /// <internalonly/>
-        uint IConvertible.ToUInt32(IFormatProvider provider)
-        {
-            return Convert.ToUInt32(_value);
-        }
-
-        /// <internalonly/>
-        long IConvertible.ToInt64(IFormatProvider provider)
-        {
-            return Convert.ToInt64(_value);
-        }
-
-        /// <internalonly/>
-        ulong IConvertible.ToUInt64(IFormatProvider provider)
-        {
-            return Convert.ToUInt64(_value);
-        }
-
-        /// <internalonly/>
-        float IConvertible.ToSingle(IFormatProvider provider)
-        {
-            return Convert.ToSingle(_value);
-        }
-
-        /// <internalonly/>
-        double IConvertible.ToDouble(IFormatProvider provider)
-        {
-            return Convert.ToDouble(_value);
-        }
-
-        /// <internalonly/>
-        decimal IConvertible.ToDecimal(IFormatProvider provider)
-        {
-            return Convert.ToDecimal(_value);
-        }
-
-        /// <internalonly/>
-        DateTime IConvertible.ToDateTime(IFormatProvider provider)
-        {
-            return Convert.ToDateTime(_value);
-        }
-
-        /// <internalonly/>
-        object IConvertible.ToType(System.Type type, IFormatProvider provider)
-        {
-            return Convert.ChangeType(this, type, provider);
-        }
-
-        #endregion
     }
 }
