@@ -20,18 +20,21 @@ namespace BitHelp.Core.Type.pt_BR
         private bool _isValid;
 
         public static implicit operator string(PisType input) => input.ToString();
+        public static implicit operator string(PisType? input) => input?.ToString();
+
         public static implicit operator PisType(string input) => new PisType(input);
+        public static implicit operator PisType?(string input) => input == null ? (PisType?)null : new PisType(input);
 
         /// <summary>
         /// Return value 000.00000.00-0
         /// </summary>
         public static readonly PisType Empty = new PisType { _value = "000.00000.00-0" };
 
-        public static void Parse(string input, out PisType output)
+        public static PisType Parse(string input)
         {
             if (TryParse(input, out PisType result))
             {
-                output = result;
+                return result;
             }
             else
             {

@@ -21,18 +21,21 @@ namespace BitHelp.Core.Type.pt_BR
         private bool _isValid;
 
         public static implicit operator string(PhoneType input) => input.ToString();
+        public static implicit operator string(PhoneType? input) => input?.ToString();
+
         public static implicit operator PhoneType(string input) => new PhoneType(input);
+        public static implicit operator PhoneType?(string input) => input == null ? (PhoneType?)null : new PhoneType(input);
 
         /// <summary>
         /// Return value (00) 0000-0000
         /// </summary>
         public static readonly PhoneType Empty = new PhoneType { _value = "(00) 0000-0000" };
 
-        public static void Parse(string input, out PhoneType output)
+        public static PhoneType Parse(string input)
         {
             if (TryParse(input, out PhoneType result))
             {
-                output = result;
+                return result;
             }
             else
             {

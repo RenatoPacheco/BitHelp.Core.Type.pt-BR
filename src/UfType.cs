@@ -20,7 +20,10 @@ namespace BitHelp.Core.Type.pt_BR
         private bool _isValid;
 
         public static implicit operator string(UfType input) => input.ToString();
+        public static implicit operator string(UfType? input) => input?.ToString();
+
         public static implicit operator UfType(string input) => new UfType(input);
+        public static implicit operator UfType?(string input) => input == null ? (UfType?)null : new UfType(input);
 
         /// <summary>
         /// Return value string.Empty

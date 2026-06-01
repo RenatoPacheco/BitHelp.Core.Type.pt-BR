@@ -20,18 +20,21 @@ namespace BitHelp.Core.Type.pt_BR
         private bool _isValid;
 
         public static implicit operator string(CpfType input) => input.ToString();
+        public static implicit operator string(CpfType? input) => input?.ToString();
+
         public static implicit operator CpfType(string input) => new CpfType(input);
+        public static implicit operator CpfType?(string input) => input == null ? (CpfType?)null : new CpfType(input);
 
         /// <summary>
         /// Return value 000.000.000-00
         /// </summary>
         public static readonly CpfType Empty = new CpfType { _value = "000.000.000-00" };
 
-        public static void Parse(string input, out CpfType output)
+        public static CpfType Parse(string input)
         {
             if (TryParse(input, out CpfType result))
             {
-                output = result;
+                return result;
             }
             else
             {
