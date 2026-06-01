@@ -121,7 +121,7 @@
     <value>Não pode ser nulo.</value>
   </data>
   <data name="ItIsNotAValidType" xml:space="preserve">
-    <value>Náo é um tipo válido.</value>
+    <value>Não é um tipo válido.</value>
   </data>
   <data name="ItIsNotInAValidFormat" xml:space="preserve">
     <value>Não está em um formato válido.</value>

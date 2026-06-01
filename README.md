@@ -7,13 +7,13 @@
 [![codecov](https://codecov.io/gh/RenatoPacheco/BitHelp.Core.Type.pt-BR/branch/master/graph/badge.svg?token=6YLN9GKD8X)](https://codecov.io/gh/RenatoPacheco/BitHelp.Core.Type.pt-BR)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RenatoPacheco_BitHelp.Core.Type.pt-BR&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=RenatoPacheco_BitHelp.Core.Type.pt-BR)
 
-Project with a collection of data types usually used in Brazil.
+Project with a collection of data types commonly used in Brazil.
 
 # Getting Started
 
 ## Installation process
 
-This package is available through Nuget Packages: https://www.nuget.org/packages/BitHelp.Core.Type.pt-BR
+This package is available on NuGet: https://www.nuget.org/packages/BitHelp.Core.Type.pt-BR
 
 **Nuget**
 ```
@@ -31,7 +31,7 @@ dotnet add package BitHelp.Core.Type.pt-BR
 
 - refactor: Update integration test
 
-To read about others releases access [RELEASES.md](https://github.com/RenatoPacheco/BitHelp.Core.Type.pt-BR/blob/master/RELEASES.md)
+To read about other releases, access [RELEASES.md](https://github.com/RenatoPacheco/BitHelp.Core.Type.pt-BR/blob/master/RELEASES.md)
 
 # Build and Test
 
@@ -52,7 +52,7 @@ dotnet test --no-build --verbosity normal
 
 ## Report Generator
 
-[Coverlet] is used as a package in the test project, to generate the test coverage file. But to generate a report, the [Report Generator] must be installed on the computer, in this case in global scope. In this project I am using version 4.8.6.
+[Coverlet] is used as a package in the test project to generate the test coverage file. To generate a report, the [Report Generator] must be installed globally. This project uses version 4.8.6.
 
 ```	
 dotnet tool install --global dotnet-reportgenerator-globaltool --version 4.8.6
@@ -72,7 +72,7 @@ reportgenerator "-reports:coverage/**/coverage.cobertura.xml" "-targetdir:covera
 
 Upon execution, the command will generate a test report in the **./coverage/report**.
 
-So I don't have to run each command for each test that wants to generate the report, I created a **./buildReport.sh** to make it easier, so just run the shell script below:
+To simplify generating the report, run the shell script below:
 
 ```	
 ./buildReport.sh
