@@ -55,6 +55,7 @@ jobs:
   # Start analyze
   analyze:
     name: Sonar Cloud Analyze
+    needs: Test
     runs-on: windows-latest
     steps:
       - name: Set up JDK 17
@@ -90,9 +91,9 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         shell: powershell
         run: |
-          .\.sonar\scanner\dotnet-sonarscanner begin /k:"RenatoPacheco_BitHelp.Core.Type.pt-BR" /o:"renatopacheco" /d:sonar.token="${{ secrets.SONAR_TOKEN }}" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.cs.opencover.reportsPaths="test\coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="test\TestResults\report.trx"
+          .\.sonar\scanner\dotnet-sonarscanner begin /k:"RenatoPacheco_BitHelp.Core.Type.pt-BR" /o:"renatopacheco" /d:sonar.host.url="https://sonarcloud.io" /d:sonar.login="${{ secrets.SONAR_TOKEN }}" /d:sonar.cs.opencover.reportsPaths="coverage/coverage.opencover.xml" /d:sonar.cs.vstest.reportsPaths="**/report.trx"
           dotnet restore
           dotnet build --configuration Release --no-restore
-          dotnet test -l "trx;LogFileName=report.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          dotnet test test/BitHelp.Core.Type.pt-BR.Test.csproj --no-build -l "trx;LogFileName=report.trx" /p:CollectCoverage=true /p:CoverletOutputFormat=opencover /p:CoverletOutput=coverage/
+          .\.sonar\scanner\dotnet-sonarscanner end /d:sonar.login="${{ secrets.SONAR_TOKEN }}"
   # End analyze
