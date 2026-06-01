@@ -20,7 +20,10 @@ namespace BitHelp.Core.Type.pt_BR
         private bool _isValid;
 
         public static implicit operator string(CepType input) => input.ToString();
+        public static implicit operator string(CepType? input) => input?.ToString();
+
         public static implicit operator CepType(string input) => new CepType(input);
+        public static implicit operator CepType?(string input) => input == null ? (CepType?)null : new CepType(input);
 
         /// <summary>
         /// Return value 00000-000

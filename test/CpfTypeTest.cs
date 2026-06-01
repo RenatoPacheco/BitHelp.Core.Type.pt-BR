@@ -35,6 +35,24 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.True(test.IsValid());
         }
 
+        [Fact]
+        public void Check_string_null()
+        {
+            string input = null;
+            CpfType? test = input;
+
+            Assert.Null(test);
+        }
+
+        [Fact]
+        public void Check_string_empty()
+        {
+            string input = string.Empty;
+            CpfType test = input;
+
+            Assert.Equal(string.Empty, test);
+        }
+
 
     }
 }

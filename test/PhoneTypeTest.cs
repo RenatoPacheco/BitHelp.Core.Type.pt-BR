@@ -45,5 +45,23 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
             Assert.False(test.IsValid());
         }
+
+        [Fact]
+        public void Check_string_null()
+        {
+            string input = null;
+            PhoneType? test = input;
+
+            Assert.Null(test);
+        }
+
+        [Fact]
+        public void Check_string_empty()
+        {
+            string input = string.Empty;
+            PhoneType test = input;
+
+            Assert.Equal(string.Empty, test);
+        }
     }
 }

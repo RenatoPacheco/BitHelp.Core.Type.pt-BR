@@ -32,5 +32,23 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.Equal(input?.Trim() ?? string.Empty, test.ToString());
             Assert.True(test.IsValid());
         }
+
+        [Fact]
+        public void Check_string_null()
+        {
+            string input = null;
+            PisType? test = input;
+
+            Assert.Null(test);
+        }
+
+        [Fact]
+        public void Check_string_empty()
+        {
+            string input = string.Empty;
+            PisType test = input;
+
+            Assert.Equal(string.Empty, test);
+        }
     }
 }

@@ -21,7 +21,10 @@ namespace BitHelp.Core.Type.pt_BR
         private bool _isValid;
 
         public static implicit operator string(DateType input) => input.ToString();
+        public static implicit operator string(DateType? input) => input?.ToString();
+
         public static implicit operator DateType(string input) => new DateType(input);
+        public static implicit operator DateType?(string input) => input == null ? (DateType?)null : new DateType(input);
 
         /// <summary>
         /// Return value dd/mm/aaaa
