@@ -1,4 +1,5 @@
-﻿using Xunit;
+﻿using System;
+using Xunit;
 
 namespace BitHelp.Core.Type.pt_BR.Test
 {
@@ -29,6 +30,7 @@ namespace BitHelp.Core.Type.pt_BR.Test
         {
             PhoneType test = new(input);
             Assert.Equal(expected, test.ToString());
+            Assert.Equal(expected, Convert.ToString(test));
             Assert.True(test.IsValid());
         }
 
@@ -63,6 +65,39 @@ namespace BitHelp.Core.Type.pt_BR.Test
             PhoneType test = value;
 
             Assert.Equal(string.Empty, test.ToString());
+        }
+
+        [Fact]
+        public void Check_try_parse_valid()
+        {
+            string value = "(11) 91234-5678";
+            Assert.True(PhoneType.TryParse(value, out PhoneType result));
+            Assert.Equal(value, result.ToString());
+        }
+
+        [Fact]
+        public void Check_try_parse_invalid()
+        {
+            string value = "11312345678";
+            Assert.False(PhoneType.TryParse(value, out PhoneType result));
+            Assert.Equal(PhoneType.Empty.ToString(), result.ToString());
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        [InlineData("11312345678")]
+        public void Check_parse_invalid(string value)
+        {
+            Assert.Throws<ArgumentException>(() => PhoneType.Parse(value));
+        }
+
+        [Fact]
+        public void Check_parse_valid()
+        {
+            string value = "(11) 91234-5678";
+            PhoneType result = PhoneType.Parse(value);
+            Assert.Equal(value, result.ToString());
         }
     }
 }
