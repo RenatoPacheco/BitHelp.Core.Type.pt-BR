@@ -1,5 +1,12 @@
 # BitHelp.Core.Type.pt-BR
 
+## Release 0.3.1
+
+- feat: Review texts.
+- refact: Removing IConvertible implementation.
+- fix: Set nullable reference types to all types.
+- fix: correct Parse methods implementation.
+
 ## Release 0.3.0
 
 - refactor: Update integration test
