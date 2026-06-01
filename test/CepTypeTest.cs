@@ -24,22 +24,23 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.False(test.IsValid());
         }
 
-        [Fact]
-        public void Check_string_null()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Check_string_null(string value)
         {
-            string input = null;
-            CepType? test = input;
-
-            Assert.Null(test);
+            CepType? test = value;
+            Assert.Equal(value, test?.ToString());
         }
 
-        [Fact]
-        public void Check_string_empty()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Check_string_empty(string value)
         {
-            string input = string.Empty;
-            CepType test = input;
+            CepType test = value;
 
-            Assert.Equal(string.Empty, test);
+            Assert.Equal(string.Empty, test.ToString());
         }
     }
 }

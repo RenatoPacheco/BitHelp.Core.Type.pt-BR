@@ -35,22 +35,23 @@ namespace BitHelp.Core.Type.pt_BR.Test
             Assert.True(test.IsValid());
         }
 
-        [Fact]
-        public void Check_string_null()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Check_string_null(string value)
         {
-            string input = null;
-            CpfType? test = input;
-
-            Assert.Null(test);
+            CpfType? test = value;
+            Assert.Equal(value, test?.ToString());
         }
 
-        [Fact]
-        public void Check_string_empty()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void Check_string_empty(string value)
         {
-            string input = string.Empty;
-            CpfType test = input;
+            CpfType test = value;
 
-            Assert.Equal(string.Empty, test);
+            Assert.Equal(string.Empty, test.ToString());
         }
 
 
